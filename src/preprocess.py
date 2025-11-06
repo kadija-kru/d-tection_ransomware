@@ -71,7 +71,7 @@ def train_test_store(df, pipeline):
 
 
 if __name__ == "__main__":
-    df = load_data("data/UGRansome_Dataset_2024.csv")
+    df = load_data("/content/d-tection_ransomware/data/UGRansome_Dataset_2024.csv")
     df = create_target(df)
     X_processed, y, pipeline = preprocess(df)
     train_test_store(df, pipeline)
