@@ -21,7 +21,7 @@ feature_cols = ["Protocol", "Flag", "Family", "netflow_bucket",
                 "bytes_per_second", "port_risk", "btc_flag", "usd_flag", "threat_score", "Port"]
 
 # Hyperparams
-n_episodes = 1
+n_episodes = 50
 log_every = 20
 max_steps_per_episode = None  # use full episode length
 lr = 1e-3

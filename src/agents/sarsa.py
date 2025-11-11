@@ -83,9 +83,8 @@ class DeepSARSA:
                 q_snext_anext = q_next[0, next_action]
             target_val = torch.tensor(reward, dtype=torch.float32, device=self.device) + self.gamma * q_snext_anext
 
-        loss = self.loss_fn(q_sa, target_val)
-
         self.optimizer.zero_grad()
+        loss = self.loss_fn(q_sa, target_val)
         loss.backward()
         self.optimizer.step()
 
