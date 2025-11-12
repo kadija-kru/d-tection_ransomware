@@ -32,7 +32,7 @@ class RansomwareEnv:
 
         # drop columns
         self.drop_cols = drop_cols or []
-        
+
         # RL internals
         self.current_episode = None
         self.t = 0
@@ -42,7 +42,6 @@ class RansomwareEnv:
 
     def reset(self):
         """Start a new episode"""
-        # choose random episode
         self.current_episode = shuffle(self.episodes)[0].reset_index(drop=True)
         self.t = 0
         return self._get_state(self.current_episode.iloc[self.t])
@@ -53,18 +52,38 @@ class RansomwareEnv:
         processed = self.pipeline.transform(pd.DataFrame([raw]))
         return processed.flatten()
 
+    # ✅ UPDATED REWARD LOGIC
     def step(self, action):
-        """Return next_state, reward, done, info"""
+        """
+        Return next_state, reward, done, info
+
+        New Reward Table:
+        ┌─────────┬───────┬──────────────┬────────┐
+        │ action  │ label │ meaning      │ reward │
+        ├─────────┼───────┼──────────────┼────────┤
+        │   1     │   1   │ True Positive│  +2    │
+        │   0     │   0   │ True Negative│  +1    │
+        │   1     │   0   │ False Positive│ -2    │
+        │   0     │   1   │ False Negative│ -5    │
+        └─────────┴───────┴──────────────┴────────┘
+        """
 
         row = self.current_episode.iloc[self.t]
+        label = row["risk"]   # 0 good, 1 ransomware
 
-        # GT label
-        label = row["risk"]  # 0 good, 1 ransomware
+        # --- REWARD IMPROVED ---
+        if action == 1 and label == 1:
+            reward = +2     # TP
+        elif action == 0 and label == 0:
+            reward = +1     # TN
+        elif action == 1 and label == 0:
+            reward = -2     # FP
+        elif action == 0 and label == 1:
+            reward = -5     # FN
+        else:
+            reward = -1     # fallback
 
-        # reward
-        reward = +1 if (label == action) else -1
-
-        # move forward
+        # Move forward
         self.t += 1
         done = self.t >= len(self.current_episode)
 
