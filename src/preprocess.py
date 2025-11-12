@@ -97,7 +97,7 @@ def preprocess_data(df: pd.DataFrame, save_dir="models"):
     return X_processed, y, pipeline
 
 # --- Inference preprocessing for new/unseen data ---
-def inference_preprocess(df: pd.DataFrame, pipeline_path="models/feature_pipeline.pkl"):
+def inference_preprocess(df: pd.DataFrame, pipeline_path="/content/d-tection_ransomware/models/feature_pipeline.pkl"):
     pipeline = joblib.load(pipeline_path)
     df = clean_data(df)
     df = feature_engineering(df)
@@ -106,6 +106,6 @@ def inference_preprocess(df: pd.DataFrame, pipeline_path="models/feature_pipelin
 
 # --- Example usage ---
 if __name__ == "__main__":
-    df = load_data("data/UGRansome_Dataset_2024.csv")
+    df = load_data("/content/d-tection_ransomware/data/UGRansome_Dataset_2024.csv")
     X, y, pipeline = preprocess_data(df)
     print("Processed features shape:", X.shape)
