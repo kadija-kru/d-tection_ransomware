@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Cybersecurity Fundamentals",
+    "description": "Learn the basics of cybersecurity, including threat detection, prevention strategies, and best practices for protecting your organization.",
+    "duration": "3 hours",
+    "level": "Beginner",
+    "category": "Security",
+    "instructor": "Sarah Johnson",
+    "availableSeats": 25,
+    "startDate": "2026-03-15",
+    "tags": ["security", "fundamentals", "threat-detection"]
+  },
+  {
+    "id": 2,
+    "title": "Ransomware Detection & Response",
+    "description": "Advanced training on identifying ransomware attacks, implementing detection systems, and responding effectively to security incidents.",
+    "duration": "4 hours",
+    "level": "Advanced",
+    "category": "Security",
+    "instructor": "Michael Chen",
+    "availableSeats": 15,
+    "startDate": "2026-03-20",
+    "tags": ["ransomware", "incident-response", "advanced"]
+  },
+  {
+    "id": 3,
+    "title": "Machine Learning for Security",
+    "description": "Explore how machine learning algorithms can be used to detect and prevent security threats in real-time.",
+    "duration": "5 hours",
+    "level": "Intermediate",
+    "category": "AI & Security",
+    "instructor": "Dr. Emily Rodriguez",
+    "availableSeats": 20,
+    "startDate": "2026-03-25",
+    "tags": ["machine-learning", "AI", "security"]
+  },
+  {
+    "id": 4,
+    "title": "Network Security Best Practices",
+    "description": "Comprehensive training on securing network infrastructure, implementing firewalls, and monitoring network traffic.",
+    "duration": "3.5 hours",
+    "level": "Intermediate",
+    "category": "Networking",
+    "instructor": "James Wilson",
+    "availableSeats": 30,
+    "startDate": "2026-04-01",
+    "tags": ["networking", "infrastructure", "monitoring"]
+  },
+  {
+    "id": 5,
+    "title": "Data Privacy & Compliance",
+    "description": "Understanding GDPR, data protection regulations, and implementing compliance frameworks in your organization.",
+    "duration": "2.5 hours",
+    "level": "Beginner",
+    "category": "Compliance",
+    "instructor": "Lisa Anderson",
+    "availableSeats": 40,
+    "startDate": "2026-04-05",
+    "tags": ["privacy", "compliance", "GDPR"]
+  },
+  {
+    "id": 6,
+    "title": "Cloud Security Architecture",
+    "description": "Learn to design and implement secure cloud infrastructure with best practices for AWS, Azure, and Google Cloud.",
+    "duration": "4.5 hours",
+    "level": "Advanced",
+    "category": "Cloud",
+    "instructor": "Robert Kim",
+    "availableSeats": 18,
+    "startDate": "2026-04-10",
+    "tags": ["cloud", "architecture", "infrastructure"]
+  },
+  {
+    "id": 7,
+    "title": "Security Awareness for All Staff",
+    "description": "Essential security training for all employees covering phishing, social engineering, and safe online practices.",
+    "duration": "1.5 hours",
+    "level": "Beginner",
+    "category": "Awareness",
+    "instructor": "Amanda Taylor",
+    "availableSeats": 100,
+    "startDate": "2026-04-15",
+    "tags": ["awareness", "phishing", "social-engineering"]
+  },
+  {
+    "id": 8,
+    "title": "Penetration Testing Essentials",
+    "description": "Hands-on training in ethical hacking and penetration testing techniques to identify vulnerabilities.",
+    "duration": "6 hours",
+    "level": "Advanced",
+    "category": "Testing",
+    "instructor": "David Martinez",
+    "availableSeats": 12,
+    "startDate": "2026-04-20",
+    "tags": ["pentesting", "ethical-hacking", "vulnerabilities"]
+  }
+]
