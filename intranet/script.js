@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const toastEl = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
 
+    // Utility function to escape HTML and prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     // Load trainings from JSON
     async function loadTrainings() {
         try {
@@ -88,7 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'training-card';
         
         const levelClass = training.level.toLowerCase();
-        const seatsPercentage = (training.availableSeats / 50) * 100; // Assuming max 50 seats
+        // Calculate seats percentage based on a dynamic scale (showing 100% at 50+ seats for better UX)
+        const maxSeatsForDisplay = 50;
+        const seatsPercentage = Math.min((training.availableSeats / maxSeatsForDisplay) * 100, 100);
         const initials = training.instructor.split(' ').map(n => n[0]).join('');
         
         // Format date
@@ -144,11 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="instructor-avatar">${initials}</div>
                     <span class="instructor-name">${training.instructor}</span>
                 </div>
-                <button class="enroll-btn" onclick="enrollInTraining(${training.id}, '${training.title}')">
+                <button class="enroll-btn" data-training-id="${training.id}" data-training-title="${escapeHtml(training.title)}">
                     Enroll Now
                 </button>
             </div>
         `;
+        
+        // Add event listener for enroll button
+        const enrollBtn = card.querySelector('.enroll-btn');
+        enrollBtn.addEventListener('click', () => {
+            enrollInTraining(training.id, training.title);
+        });
         
         return card;
     }
@@ -195,24 +210,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Enroll in training
+    function enrollInTraining(trainingId, trainingTitle) {
+        toastMessage.textContent = `Successfully enrolled in "${trainingTitle}"!`;
+        toastEl.classList.add('show');
+        
+        setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 3000);
+        
+        console.log(`Enrolled in training ID: ${trainingId}`);
+    }
+
     // Initialize
     loadTrainings();
 });
-
-// Enroll in training (global function for inline onclick)
-function enrollInTraining(trainingId, trainingTitle) {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    
-    toastMessage.textContent = `Successfully enrolled in "${trainingTitle}"!`;
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-    
-    console.log(`Enrolled in training ID: ${trainingId}`);
-}
 
 // Add smooth scroll behavior
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
